@@ -28,11 +28,14 @@ public class Listeners implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
 
-    	String testName = result.getMethod().getMethodName();
+        String testName = result.getMethod().getMethodName();
 
-    	String path = ScreenshotUtility.captureScreenshot(
-    	        BaseTest.driver,
-    	        testName);
+        String path = ScreenshotUtility.captureScreenshot(
+                BaseTest.driver,
+                testName);
+
+        test.fail(result.getThrowable());
+
         try {
             test.addScreenCaptureFromPath(path);
         } catch (Exception e) {
