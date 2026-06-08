@@ -4,20 +4,23 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ExtentManager {
-	
+
+    private static ExtentReports extent;
 
     public static ExtentReports getReportInstance() {
 
-        ExtentSparkReporter spark =
-                new ExtentSparkReporter("test-output/ExtentReport.html");
+        if (extent == null) {
 
-        spark.config().setReportName("Automation Exercise Report");
-        spark.config().setDocumentTitle("Test Execution Report");
+            ExtentSparkReporter spark =
+                    new ExtentSparkReporter("test-output/ExtentReport.html");
 
-        ExtentReports extent = new ExtentReports();
-        extent.attachReporter(spark);
+            spark.config().setReportName("Automation Exercise Report");
+            spark.config().setDocumentTitle("Test Execution Report");
+
+            extent = new ExtentReports();
+            extent.attachReporter(spark);
+        }
 
         return extent;
     }
-
 }

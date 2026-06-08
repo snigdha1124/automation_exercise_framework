@@ -6,13 +6,13 @@
   </listeners>
   <test thread-count="5" name="AutomationExerciseTests(failed)">
     <classes>
-      <class name="testcases.OrderTest">
+      <class name="testcases.ContactUsTest">
         <methods>
           <include name="setup"/>
           <include name="tearDown"/>
-          <include name="orderTest"/>
+          <include name="contactUsTest"/>
         </methods>
-      </class> <!-- testcases.OrderTest -->
+      </class> <!-- testcases.ContactUsTest -->
     </classes>
   </test> <!-- AutomationExerciseTests(failed) -->
 </suite> <!-- Failed suite [AutomationExerciseSuite] -->

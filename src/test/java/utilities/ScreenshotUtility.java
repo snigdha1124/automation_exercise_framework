@@ -1,40 +1,33 @@
 package utilities;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
 
 public class ScreenshotUtility {
-	
-	private static final String testName = null;
 
-	public static String captureScreenshot(WebDriver driver, String screenshotName) {
+    public static String captureScreenshot(WebDriver driver, String testName) {
+
+        String path = System.getProperty("user.dir")
+                + "/Screenshots/"
+                + testName + ".png";
 
         try {
+
             File src = ((TakesScreenshot) driver)
                     .getScreenshotAs(OutputType.FILE);
 
-            File dest = new File(
-                    "screenshots/" + testName + ".png");
+            File dest = new File(path);
 
-            dest.getParentFile().mkdirs();
+            FileHandler.copy(src, dest);
 
-            Files.copy(src.toPath(),
-                    dest.toPath(),
-                    StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {
 
-            System.out.println("Screenshot saved: "
-                    + dest.getAbsolutePath());
-
-        } catch (IOException e) {
             e.printStackTrace();
         }
-		return screenshotName;
-    }
 
+        return path;
+    }
 }

@@ -8,21 +8,19 @@ import pages.ProductsPage;
 
 public class ProductsTest extends BaseTest {
 
-	@Test
-	public void searchProductTest() {
+    @Test
+    public void searchProductTest() {
 
-	    ProductsPage product = new ProductsPage(driver);
+        ProductsPage products = new ProductsPage(driver);
 
-	    product.openProducts();
-	    product.searchProduct("Top");
+        products.openProducts();
 
-	    Assert.assertTrue(
-	        driver.getPageSource().contains("Top"),
-	        "Product search failed!"
-	    );
+        products.searchProduct("Blue Top");
 
-	    System.out.println("Product Search Successful");
-	}
+        Assert.assertTrue(driver.getPageSource().contains("Blue Top"));
+
+        System.out.println("Product Search Test Passed");
+    }
 }
 
 
